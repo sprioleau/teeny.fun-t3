@@ -1,37 +1,39 @@
 import { type NextPage } from "next";
-import { Logo, UrlForm } from "@components";
+import { Logo, NewUserForm, UrlForm } from "@components";
 import Head from "next/head";
 import emojiUnicode from "emoji-unicode";
 
-import { trpc } from "../utils/trpc";
+import { trpc } from "@utils";
 
 const Home: NextPage = () => {
-	const { data: users } = trpc.user.getAll.useQuery();
-	console.log("users:", users);
+  const { data: users } = trpc.user.getAllUsers.useQuery();
+  const { data: urls } = trpc.url.getAllUrls.useQuery();
+  console.log("urls:", urls);
+  console.log("users:", users);
 
-	const codePoints = emojiUnicode.raw("😄1️⃣2️⃣3️⃣");
-	console.log("codePoints:", codePoints);
+  const codePoints = emojiUnicode.raw("😄1️⃣2️⃣3️⃣");
+  console.log("codePoints:", codePoints);
 
-	return (
-		<div className="app">
-			<Head>
-				<title>Teeny.fun</title>
-				<meta name="description" content="Make teeny tiny URLs with emojis 😂!" />
-				<link rel="icon" href="/favicon.ico" />
-			</Head>
+  return (
+    <div className="app">
+      <Head>
+        <title>Teeny.fun</title>
+        <meta name="description" content="Make teeny tiny URLs with emojis 😂!" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-			<main className="main">
-				<div className="home-page">
-					<h1>
-						<span aria-hidden={true} hidden={true}>
-							teeny.fun
-						</span>
-						<span>
-							<Logo size="20rem" />
-						</span>
-					</h1>
+      <main className="main">
+        <div className="home-page">
+          <h1>
+            <span aria-hidden={true} hidden={true}>
+              teeny.fun
+            </span>
+            <span>
+              <Logo size="20rem" />
+            </span>
+          </h1>
 
-					{/* {!authedUser ? (
+          {/* {!authedUser ? (
 					<form onSubmit={handleSubmit}>
 						<button type="submit">Login with GitHub</button>
 					</form>
@@ -43,14 +45,22 @@ const Home: NextPage = () => {
 						</form>
 					</>
 				)} */}
-					<UrlForm />
-					{/* <p>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <UrlForm />
+            <NewUserForm />
+          </div>
+          {/* <p>
 					<Link href="/">Sign up</Link> to update your links.
 				</p>
 				<p>
 					<Link href="/">Already have an account?</Link>
 				</p> */}
-					{/* {topEmojis && (
+          {/* {topEmojis && (
 					<table>
 						<thead>
 							<tr>
@@ -71,19 +81,19 @@ const Home: NextPage = () => {
 						</tbody>
 					</table>
 				)} */}
-				</div>
-			</main>
+        </div>
+      </main>
 
-			<footer>
-				<p>
-					Built by{" "}
-					<a href="https://sprioleau.dev" target="_blank" rel="noopener noreferrer">
-						San&apos;Quan Prioleau
-					</a>
-				</p>
-			</footer>
-		</div>
-	);
+      <footer>
+        <p>
+          Built by{" "}
+          <a href="https://sprioleau.dev" target="_blank" rel="noopener noreferrer">
+            San&apos;Quan Prioleau
+          </a>
+        </p>
+      </footer>
+    </div>
+  );
 };
 
 export default Home;
