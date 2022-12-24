@@ -1,4 +1,3 @@
-export { default as log } from "./log";
 export { default as hasNone } from "./hasNone";
 export { default as constructTeenyUrl } from "./constructTeenyUrl";
 export { default as isEmoji } from "./isEmoji";

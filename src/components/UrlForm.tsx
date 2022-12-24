@@ -1,5 +1,5 @@
 import React from "react";
-import { isSet, isValidUrl, log, removeTrailingSlash } from "@utils";
+import { isSet, isValidUrl, removeTrailingSlash } from "@utils";
 
 import { GrMagic } from "react-icons/gr";
 import { HiLink } from "react-icons/hi";
@@ -21,12 +21,11 @@ const UrlForm = () => {
 
     const response = await fetch(`/api/teeny/createTeenyUrl?${queryString}`);
     const { data, error } = await response.json();
+    console.log("data:", data);
 
     if (!error) {
       setLongUrl("");
     }
-
-    log({ data, error });
   };
 
   return (
