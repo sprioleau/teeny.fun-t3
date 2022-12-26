@@ -13,5 +13,13 @@ const config = {
     locales: ["en"],
     defaultLocale: "en",
   },
+  async rewrites() {
+		return [
+			{
+				source: "/:teeny_code*",
+				destination: "/api/:teeny_code*", // The :path parameter isn't used here so will be automatically passed in the query
+			},
+		];
+	},
 };
 export default config;
