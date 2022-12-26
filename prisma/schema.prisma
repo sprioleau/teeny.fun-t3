@@ -20,13 +20,14 @@ model User {
 }
 
 model Url {
-  id          String   @id @default(cuid())
-  long_url    String
-  short_url   String
-  code_points String
-  hits        Int      @default(0)
-  userId      String
-  user        User     @relation(fields: [userId], references: [id])
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id         String   @id @default(cuid())
+  longUrl    String
+  shortUrl   String
+  teenyCode  String   @unique
+  codePoints String   
+  hits       Int      @default(0)
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
