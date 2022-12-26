@@ -1,7 +1,6 @@
 import { type NextPage } from "next";
 import { Logo, NewUserForm, UrlForm } from "@components";
 import Head from "next/head";
-import emojiUnicode from "emoji-unicode";
 
 import { trpc } from "@utils";
 
@@ -11,21 +10,27 @@ const Home: NextPage = () => {
   console.log("urls:", urls);
   console.log("users:", users);
 
-  const codePoints = emojiUnicode.raw("😄1️⃣2️⃣3️⃣");
-  console.log("codePoints:", codePoints);
-
   return (
     <div className="app">
       <Head>
         <title>Teeny.fun</title>
-        <meta name="description" content="Make teeny tiny URLs with emojis 😂!" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="description"
+          content="Make teeny tiny URLs with emojis 😂!"
+        />
+        <link
+          rel="icon"
+          href="/favicon.ico"
+        />
       </Head>
 
       <main className="main">
         <div className="home-page">
           <h1>
-            <span aria-hidden={true} hidden={true}>
+            <span
+              aria-hidden={true}
+              hidden={true}
+            >
               teeny.fun
             </span>
             <span>
@@ -87,7 +92,11 @@ const Home: NextPage = () => {
       <footer>
         <p>
           Built by{" "}
-          <a href="https://sprioleau.dev" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://sprioleau.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             San&apos;Quan Prioleau
           </a>
         </p>

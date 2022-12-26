@@ -4,7 +4,7 @@ import emojiStringToArray from "./emojiStringToArray";
 import isEmoji from "./isEmoji";
 
 const getTopEmojis = (urlData: Url[]): TopEmoji => {
-  return urlData?.reduce((acc, { teeny_code: teenyCode, hits }) => {
+  return urlData?.reduce((acc, { teenyCode: teenyCode, hits }) => {
     const teenyCodeCharacters = emojiStringToArray(teenyCode);
 
     teenyCodeCharacters.forEach((character) => {

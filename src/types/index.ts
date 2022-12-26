@@ -1,9 +1,10 @@
 export type Url = {
   id?: string;
-  created_at?: string;
-  code_points: string;
-  teeny_code: string;
-  long_url: string;
+  createdAt?: string;
+  codePoints: string;
+  teenyCode: string;
+  longUrl: string;
+  shortrl: string;
   hits: number;
 };
 
