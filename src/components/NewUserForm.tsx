@@ -7,14 +7,14 @@ const UrlForm = () => {
   const [email, setEmail] = React.useState<string>("");
   const [displayName, setDisplayName] = React.useState<string>("");
 
-  const { mutate: createNewUserMutation } = trpc.user.createNewUser.useMutation();
+  const { mutateAsync: createNewUserMutation } = trpc.user.createNewUser.useMutation();
 
   const handleUpdateEmail = (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
   const handleUpdateDisplayName = (e: React.ChangeEvent<HTMLInputElement>) => setDisplayName(e.target.value);
   const handleCreateUser = async () => {
     if (!isSet([email, displayName])) return alert("Required fields not set");
 
-    const newUser = createNewUserMutation({
+    const newUser = await createNewUserMutation({
       email,
       displayName,
     });
