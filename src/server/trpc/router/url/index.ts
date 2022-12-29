@@ -7,15 +7,9 @@ import { router, publicProcedure } from "../../trpc";
 
 export default router({
   createUrlForUser: publicProcedure
-    .input(z.object({ userId: z.string(), longUrl: z.string() }))
+    .input(z.object({ longUrl: z.string() }))
     .mutation(({ ctx, input }) => {
-      const user = ctx.prisma.user.findUnique({
-        where: {
-          id: input.userId,
-        },
-      });
-
-      if (!user) {
+      if (!ctx.session?.user) {
         throw new Error("User not found");
       }
 
@@ -23,7 +17,7 @@ export default router({
 
       const newUrl = ctx.prisma.url.create({
         data: {
-          userId: input.userId,
+          userId: ctx.session.user.id,
           longUrl: input.longUrl,
           shortUrl: `${ROOT_URL}/${teenyCode}`,
           teenyCode,

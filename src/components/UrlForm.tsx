@@ -20,18 +20,11 @@ const UrlForm = () => {
     if (!isSet(longUrl)) return alert("Required fields not set");
     if (!isValidUrl(longUrl)) return alert("Not a valid URL");
 
-    // const queryString = new URLSearchParams({
-    //   long_url: String(removeTrailingSlash(longUrl)),
-    // });
-
     const newUrl = await createNewUrlMutation({
       longUrl: String(removeTrailingSlash(longUrl)),
-      userId: "clc3boaog0000g3enmlsupg4o", // test user
     });
 
     console.log("newUrl:", newUrl);
-
-    // if (!error) setLongUrl("");
 
     if (Boolean(newUrl)) console.log("🎉 Success");
 
