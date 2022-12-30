@@ -1,11 +1,12 @@
-import styles from "./index.module.css";
 import { type NextPage } from "next";
 import Head from "next/head";
-import { Logo, NewUserForm, UrlForm } from "@components";
+import { default as logo } from "../images/logo.svg";
+import { UrlForm, Shapes } from "@components";
 
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import { trpc } from "@utils";
+import Image from "next/image";
 
 const Home: NextPage = () => {
   const { data: users } = trpc.user.getAllUsers.useQuery();
@@ -29,20 +30,32 @@ const Home: NextPage = () => {
 
       <main className="main">
         <div className="home-page">
-          <div className="home-page__logo-form">
-            <h1>
-              <span
-                aria-hidden={true}
-                hidden={true}
-              >
-                teeny.fun
-              </span>
-              <span>
-                <Logo size="20rem" />
-              </span>
-            </h1>
+          <h1>
+            <span
+              aria-hidden={true}
+              hidden={true}
+            >
+              teeny.fun
+            </span>
+            <span
+              style={{
+                width: "20rem",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Image
+                src={logo}
+                alt="Teeny.fun logo"
+              />
+              {/* <Image src={cry} alt="cry face emoji" width={100} height={100} /> */}
+              {/* <Logo size="20rem" /> */}
+            </span>
+          </h1>
+          <Shapes />
 
-            {/* {!authedUser ? (
+          {/* {!authedUser ? (
               <form onSubmit={handleSubmit}>
                 <button type="submit">Login with GitHub</button>
               </form>
@@ -54,22 +67,15 @@ const Home: NextPage = () => {
                 </form>
               </>
             )} */}
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <UrlForm />
-              <NewUserForm />
-            </div>
-            {/* <p>
+          <UrlForm />
+          {/* <NewUserForm /> */}
+          {/* <p>
               <Link href="/">Sign up</Link> to update your links.
             </p>
             <p>
               <Link href="/">Already have an account?</Link>
             </p> */}
-            {/* {topEmojis && (
+          {/* {topEmojis && (
               <table>
                 <thead>
                   <tr>
@@ -90,12 +96,9 @@ const Home: NextPage = () => {
                 </tbody>
               </table>
             )} */}
-          </div>
-          <div className={styles.showcaseContainer}>
-            <AuthShowcase />
-          </div>
         </div>
       </main>
+      <AuthShowcase />
 
       <footer>
         <p>
@@ -124,15 +127,12 @@ const AuthShowcase: React.FC = () => {
   );
 
   return (
-    <div className={styles.authContainer}>
-      <p className={styles.showcaseText}>
+    <div>
+      <p>
         {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
         {secretMessage && <span> - {secretMessage}</span>}
       </p>
-      <button
-        className={styles.loginButton}
-        onClick={sessionData ? () => signOut() : () => signIn()}
-      >
+      <button onClick={sessionData ? () => signOut() : () => signIn()}>
         {sessionData ? "Sign out" : "Sign in"}
       </button>
     </div>
