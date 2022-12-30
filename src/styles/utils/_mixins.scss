@@ -1,3 +1,53 @@
+@use "sass:map";
+
 @mixin border {
-	border: 5px solid var(--black);
+  border: var(--border-width) solid var(--black);
+}
+
+@mixin shadow {
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--black);
+}
+
+// @mixin inset-shadow {
+// 	box-shadow: inset calc(2 * var(--shadow-offset)) calc(2 * var(--shadow-offset)) 0 #db2e62cc;
+// }
+
+@mixin drop-shadow {
+  filter: drop-shadow(var(--shadow-offset) var(--shadow-offset) 0 var(--black));
+}
+
+$font-weights-sans: (
+  "regular": 500,
+  "medium": 700,
+  "bold": 900,
+);
+
+$font-weights-mono: (
+  "light": 300,
+  "regular": 400,
+);
+
+@mixin ff-sans($weight: regular) {
+  font-style: normal;
+  font-weight: map.get($font-weights-sans, $weight);
+  font-family: roc-grotesk, "Arial Black", sans-serif;
+}
+
+@mixin ff-mono($weight: regular) {
+  font-style: normal;
+  font-weight: map.get($font-weights-mono, $weight);
+  font-family: "IBM Plex Mono", monospace;
+}
+
+@mixin center($direction: row) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: $direction;
+}
+
+@mixin transition($duration: 0.3s, $easing: cubic-bezier(0.25, 0.46, 0.45, 0.94)) {
+  transition-property: all;
+  transition-duration: $duration;
+  transition-timing-function: $easing;
 }

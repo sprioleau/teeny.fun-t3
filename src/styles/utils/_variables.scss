@@ -1,9 +1,14 @@
 :root {
-	--off-white: #f9f7ec;
-	--white: #fffbf4;
-	--purewhite: #fff;
-	--yellow: #f9dc57;
-	--pink: #ff6392;
-	--blue: #5aa6dc;
-	--black: #222;
+  // Colors
+  --off-white: #fff7e5;
+  --white: #fffbf4;
+  --pure-white: #fff;
+  --yellow: #f9dc57;
+  --pink: #ff6392;
+  --blue: #5aa6dc;
+  --black: #222;
+
+  // Sizes
+  --border-width: 2.5px;
+  --shadow-offset: calc(2 * var(--border-width));
 }

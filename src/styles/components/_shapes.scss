@@ -1,0 +1,19 @@
+.shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  & > span {
+    overflow: visible !important;
+  }
+
+  img {
+    @include drop-shadow;
+    @include center;
+    margin: 0 var(--shadow-offset) var(--shadow-offset) 0 !important;
+    font-size: 5rem;
+  }
+}

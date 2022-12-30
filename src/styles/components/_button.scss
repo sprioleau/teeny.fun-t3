@@ -1,0 +1,47 @@
+.button,
+button {
+  --scale: 1;
+  --translate: 0, 0;
+  @include ff-sans(medium);
+  @include border;
+  @include shadow;
+  @include center;
+  @include transition(0.2s);
+
+  font-size: 1.25rem;
+  text-transform: lowercase;
+  color: var(--pure-white);
+  padding: 0.25rem 1.25rem;
+  background-color: var(--pink);
+  transform: scale(var(--scale)) translate(var(--translate));
+  margin: 0;
+  margin-right: calc(2 * var(--border-width));
+  margin-bottom: calc(2 * var(--border-width));
+
+  &.yellow {
+    background-color: var(--yellow);
+    color: var(--black);
+  }
+
+  &.blue {
+    background-color: var(--blue);
+  }
+
+  &:hover {
+    --offset: calc(-1 * var(--border-width));
+    --shadow-offset: calc(-3 * var(--offset));
+    --translate: var(--offset), var(--offset);
+    cursor: pointer;
+  }
+
+  &:active {
+    --offset: calc(2 * var(--border-width));
+    --translate: var(--offset), var(--offset);
+    --shadow-offset: 0;
+  }
+
+  &__icon {
+    @include center;
+    margin-right: 0.5rem;
+  }
+}

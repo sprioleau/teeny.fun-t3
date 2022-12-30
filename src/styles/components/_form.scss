@@ -1,0 +1,46 @@
+.form {
+	--padding: 3.5rem;
+	--field-height: 3rem;
+	@include drop-shadow;
+	width: calc(250px + 2 * var(--padding));
+	display: flex;
+	flex-direction: column;
+	margin: 2rem 0;
+	padding: var(--padding);
+	background-image: url("/images/squircle.svg");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+
+	&__label-wrapper {
+		@include center;
+		@include ff-mono;
+		justify-content: flex-start;
+		font-size: 0.9rem;
+		margin-bottom: 0.25rem;
+	}
+
+	&__label-icon {
+		@include center;
+		margin-right: 0.25rem;
+	}
+
+	&__input {
+		@include border;
+		display: block;
+		appearance: none;
+		padding: 0.5rem 0.75rem;
+		height: var(--field-height);
+		font-size: 1rem;
+		background-color: var(--off-white);
+
+		&::placeholder {
+			opacity: 0.5;
+		}
+	}
+
+	&__button {
+		margin-top: 0.5rem;
+		height: var(--field-height);
+	}
+}
