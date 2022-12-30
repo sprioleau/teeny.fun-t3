@@ -19,11 +19,12 @@
 		"paths": {
 			"@constants": ["constants"],
 			"@components": ["components"],
+			"@images/*": ["images/*"],
 			"@libs/*": ["libs/*"],
+			"@server/*": ["server/*"],
 			"@styles/*": ["styles/*"],
 			"@types": ["types"],
 			"@utils": ["utils"],
-			"@server/*": ["server/*"],
 		},
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs"],
