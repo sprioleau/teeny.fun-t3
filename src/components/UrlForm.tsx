@@ -4,6 +4,7 @@ import { isSet, isValidUrl, removeTrailingSlash } from "@utils";
 import { GrMagic } from "react-icons/gr";
 import { HiLink } from "react-icons/hi";
 import { trpc } from "../utils/trpc";
+import Button from "./Button";
 
 const UrlForm = () => {
   const [longUrl, setLongUrl] = React.useState("");
@@ -35,30 +36,44 @@ const UrlForm = () => {
   return (
     <div className="form">
       <label htmlFor="long-url">
-        <HiLink /> Paste in a long URL
+        <div className="form__label-wrapper">
+          <span className="form__label-icon">
+            <HiLink />
+          </span>
+          <span className="form__label">Paste in a long URL</span>
+        </div>
         <input
+          className="form__input"
           type="text"
           id="long-url"
-          required
+          placeholder="https://www.a-very-long-url.com"
           value={longUrl}
           onChange={handleUpdateLongUrl}
+          required
         />
       </label>
       <label htmlFor="teeny-code">
-        <GrMagic /> Customize your link?
+        <div className="form__label-wrapper">
+          <span className="form__label-icon">
+            <GrMagic />
+          </span>
+          <span className="form__label">Customize your link?</span>
+        </div>
         <input
+          className="form__input"
           type="text"
           id="teeny-code"
           value={teenyCode}
           onChange={handleUpdateTeenyCode}
         />
       </label>
-      <button
+      <Button
         type="submit"
         onClick={handleCreateTeenyLink}
-      >
-        teenify
-      </button>
+        label="teenify"
+        color="yellow"
+        className="form__button"
+      />
     </div>
   );
 };
