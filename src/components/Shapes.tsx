@@ -2,7 +2,7 @@ import Image from "next/image";
 import cry from "@images/cry.svg";
 import fivePointStar from "@images/5-point-star.svg";
 import fourPointStar from "@images/4-point-star.svg";
-import hourGlass from "@images/hourGlass.svg";
+import hourGlass from "@images/hour-glass.svg";
 import sixPointStar from "@images/6-point-star.svg";
 import tongue from "@images/tongue.svg";
 
