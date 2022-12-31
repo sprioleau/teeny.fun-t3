@@ -7,6 +7,7 @@ button {
   @include shadow;
   @include center;
   @include transition(0.2s);
+  position: relative;
 
   font-size: 1.25rem;
   text-transform: lowercase;
