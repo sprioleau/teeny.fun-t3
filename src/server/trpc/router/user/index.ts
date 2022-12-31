@@ -15,15 +15,7 @@ export default router({
 
     return user;
   }),
-  createNewUser: publicProcedure
-    .input(z.object({ email: z.string(), displayName: z.string() }))
-    .mutation(async ({ ctx, input }) => {
-      const newUser = await ctx.prisma.user.create({
-        data: input,
-      });
 
-      return newUser;
-    }),
   getAllUsers: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.user.findMany({
       include: {

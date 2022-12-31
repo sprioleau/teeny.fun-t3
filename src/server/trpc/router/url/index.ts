@@ -28,17 +28,21 @@ export default router({
       return newUrl;
     }),
 
-  incrementHits: publicProcedure.input(z.object({ id: z.string() })).mutation(({ ctx, input }) => {
-    const url = ctx.prisma.url.findUnique({
+  getHits: publicProcedure.input(z.object({ id: z.string() })).query(({ ctx, input }) => {
+    const teenyUrlData = ctx.prisma.url.findUnique({
       where: {
         id: input.id,
       },
     });
 
-    if (!url) {
+    if (!teenyUrlData) {
       throw new Error("Url not found");
     }
 
+    return teenyUrlData;
+  }),
+
+  incrementHits: publicProcedure.input(z.object({ id: z.string() })).mutation(({ ctx, input }) => {
     const updatedUrl = ctx.prisma.url.update({
       where: {
         id: input.id,
@@ -49,6 +53,10 @@ export default router({
         },
       },
     });
+
+    if (!updatedUrl) {
+      throw new Error("Url not found");
+    }
 
     return updatedUrl;
   }),
