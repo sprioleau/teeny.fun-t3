@@ -38,7 +38,8 @@ const Home: NextPage = () => {
         />
         <link
           rel="icon"
-          href="/favicon.ico"
+          href="/teeny-fun-favicon.png"
+          type="image/png"
         />
       </Head>
 
