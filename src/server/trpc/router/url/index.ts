@@ -3,7 +3,7 @@ import { ROOT_URL, topEmojis } from "@constants";
 import { generateTeenyCode } from "@utils";
 import { z } from "zod";
 
-import { router, publicProcedure } from "../../trpc";
+import { router, publicProcedure, protectedProcedure } from "../../trpc";
 
 export default router({
   createUrlForUser: publicProcedure
@@ -41,6 +41,22 @@ export default router({
 
     return teenyUrlData;
   }),
+
+  getAllByUserId: protectedProcedure
+    .input(z.object({ id: z.string().nullish() }))
+    .query(({ ctx, input }) => {
+      const userId = input.id;
+
+      if (!userId) {
+        throw new Error("Not logged in");
+      }
+
+      return ctx.prisma.url.findMany({
+        where: {
+          userId,
+        },
+      });
+    }),
 
   incrementHits: publicProcedure.input(z.object({ id: z.string() })).mutation(({ ctx, input }) => {
     const updatedUrl = ctx.prisma.url.update({
