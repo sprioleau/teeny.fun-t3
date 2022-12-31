@@ -1,4 +1,5 @@
 import { signIn, signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 import React from "react";
 
 export default function AuthActionButton() {
@@ -15,7 +16,24 @@ export default function AuthActionButton() {
   };
 
   return (
-    <div style={{ alignSelf: "flex-end", marginRight: "2em", marginTop: "1em" }}>
+    <div
+      style={{
+        display: "flex",
+        gap: "1em",
+        alignSelf: "flex-end",
+        marginRight: "2em",
+        marginTop: "1em",
+      }}
+    >
+      {Boolean(sessionData?.user?.image) && (
+        <Image
+          src={sessionData?.user?.image as string}
+          width={40}
+          height={40}
+          style={{ borderRadius: "50%", border: "2px solid black" }}
+          alt="user image"
+        />
+      )}
       <button onClick={handleAuthAction}>{sessionData ? "Sign out" : "Sign in"}</button>
     </div>
   );
