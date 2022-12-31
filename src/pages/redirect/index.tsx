@@ -2,21 +2,29 @@ import Head from "next/head";
 import type { NextPage } from "next";
 import React from "react";
 import { useRouter } from "next/router";
+import { trpc } from "@utils";
 
 const REDIRECT_DURATION = 2500;
 
 const RedirectPage: NextPage = () => {
   const router = useRouter();
+
   const { query } = router;
-  const { to } = query;
-  const redirectUrl = to as string;
+  const { to: redirectUrl, id } = query as { to: string; id: string };
+  const { data: teenyUrlData } = trpc.url.getHits.useQuery({ id });
+  const { mutateAsync: incrementHitsMutation } = trpc.url.incrementHits.useMutation();
 
   React.useEffect(() => {
     if (!query) router.push("/");
+    if (!window) return;
 
-    const timeout = setTimeout(() => (window.location.href = redirectUrl), REDIRECT_DURATION);
-    return () => clearTimeout(timeout);
-  }, [router, query, redirectUrl]);
+    const redirectTimeout = setTimeout(async () => {
+      await incrementHitsMutation({ id });
+      window.location.href = redirectUrl;
+    }, REDIRECT_DURATION);
+
+    return () => clearTimeout(redirectTimeout);
+  }, [router, query, id, redirectUrl, incrementHitsMutation]);
 
   return (
     <div className="app">
@@ -33,6 +41,7 @@ const RedirectPage: NextPage = () => {
       </Head>
 
       <h2>Redirecting to {redirectUrl}</h2>
+      {Boolean(teenyUrlData?.hits) && <p>Hits: {teenyUrlData?.hits}</p>}
     </div>
   );
 };

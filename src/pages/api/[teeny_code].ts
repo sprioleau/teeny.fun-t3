@@ -10,9 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     },
   });
 
-  console.dir("🌐 " + teenyUrlData?.longUrl);
-
   // if (!teenyUrlData?.longUrl) res.json(teenyUrlData);
   if (!teenyUrlData?.longUrl) res.redirect("/");
-  else res.redirect(`/redirect?to=${teenyUrlData.longUrl}`);
+  else res.redirect(`/redirect?to=${teenyUrlData.longUrl}&id=${teenyUrlData.id}`);
 }
