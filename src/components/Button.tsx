@@ -10,7 +10,7 @@ type Props = {
   disabled?: boolean;
   color?: "yellow" | "pink" | "blue" | undefined;
   className?: string;
-};
+} & React.ComponentPropsWithoutRef<"button">;
 
 const Button = ({
   label,
