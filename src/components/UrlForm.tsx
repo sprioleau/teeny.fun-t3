@@ -7,10 +7,15 @@ import { trpc } from "../utils/trpc";
 import Button from "./Button";
 
 const UrlForm = () => {
+  const utils = trpc.useContext();
   const [longUrl, setLongUrl] = React.useState("");
   const [teenyCode, setTeenyCode] = React.useState("");
 
-  const { mutateAsync: createNewUrlMutation } = trpc.url.createUrlForUser.useMutation();
+  const { mutateAsync: createNewUrlMutation } = trpc.url.createUrlForUser.useMutation({
+    onSuccess: ({ id }) => {
+      utils.url.getAllByUserId.invalidate({ id });
+    },
+  });
 
   const handleUpdateLongUrl = (e: React.ChangeEvent<HTMLInputElement>) =>
     setLongUrl(e.target.value);
