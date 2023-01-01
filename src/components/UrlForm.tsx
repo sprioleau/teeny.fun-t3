@@ -51,7 +51,7 @@ export default function UrlForm() {
 
   return (
     <form
-      className="form"
+      className="form bg-squircle"
       onSubmit={handleCreateTeenyLink}
     >
       <label htmlFor="long-url">

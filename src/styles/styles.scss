@@ -2,6 +2,9 @@
 @import "utils/mixins";
 @import "utils/app";
 
+// Helpers
+@import "helpers/squircle";
+
 // Components
 @import "components/icon";
 @import "components/button";

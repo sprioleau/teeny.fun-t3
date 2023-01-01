@@ -1,16 +1,12 @@
 .form {
   --padding: 3.5rem;
   --field-height: 3rem;
-  @include drop-shadow;
   width: calc(250px + 2 * var(--padding));
   display: flex;
   flex-direction: column;
-  // margin: 2rem 0;
   padding: var(--padding);
-  background-image: url("/images/squircle.svg");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+  position: relative;
+  z-index: 0;
 
   &__label-wrapper {
     @include center;

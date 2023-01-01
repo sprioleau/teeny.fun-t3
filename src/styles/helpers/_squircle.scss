@@ -1,0 +1,25 @@
+.bg-squircle {
+  position: relative;
+
+  &::before {
+    @include drop-shadow;
+    content: "";
+    background-image: url("/images/squircle-sm.svg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  &.md::before {
+    background-image: url("/images/squircle-md.svg");
+  }
+
+  &.lg::before {
+    background-image: url("/images/squircle-lg.svg");
+  }
+}
