@@ -21,6 +21,15 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap"
           rel="stylesheet"
         />
+        <meta
+          name="description"
+          content="Make teeny tiny URLs with emojis 😂!"
+        />
+        <link
+          rel="icon"
+          href="/teeny-fun-favicon.png"
+          type="image/png"
+        />
       </Head>
       <body>
         <Main />
