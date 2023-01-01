@@ -1,6 +1,8 @@
 import { signIn, signOut, useSession } from "next-auth/react";
+import { AiOutlineUser } from "react-icons/ai";
 import Image from "next/image";
 import React from "react";
+import Button from "./Button";
 
 export default function AuthActionButton() {
   const { data: sessionData } = useSession();
@@ -23,6 +25,13 @@ export default function AuthActionButton() {
         alignSelf: "flex-end",
       }}
     >
+      <Button
+        color="yellow"
+        onClick={handleAuthAction}
+        icon={<AiOutlineUser />}
+      >
+        {sessionData ? "Sign out" : "Sign in"}
+      </Button>
       {Boolean(sessionData?.user?.image) && (
         <Image
           src={sessionData?.user?.image as string}
@@ -32,7 +41,6 @@ export default function AuthActionButton() {
           alt="user image"
         />
       )}
-      <button onClick={handleAuthAction}>{sessionData ? "Sign out" : "Sign in"}</button>
     </div>
   );
 }
