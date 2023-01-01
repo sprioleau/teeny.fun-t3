@@ -3,12 +3,14 @@ import React from "react";
 import { GrMagic } from "react-icons/gr";
 import { HiLink } from "react-icons/hi";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 import { isSet, isValidUrl, removeTrailingSlash } from "@utils";
 import { Button } from "@components";
 import { trpc } from "../utils/trpc";
 
 const UrlForm = () => {
   const utils = trpc.useContext();
+  const router = useRouter();
 
   const [longUrl, setLongUrl] = React.useState("");
   const [teenyCode, setTeenyCode] = React.useState("");
@@ -16,6 +18,7 @@ const UrlForm = () => {
   const { mutateAsync: createNewUrlMutation } = trpc.url.createUrlForUser.useMutation({
     onSuccess: ({ id }) => {
       utils.url.getAllByUserId.invalidate({ id });
+      router.push("/");
     },
   });
 
@@ -47,7 +50,10 @@ const UrlForm = () => {
   };
 
   return (
-    <div className="form">
+    <form
+      className="form"
+      onSubmit={handleCreateTeenyLink}
+    >
       <label htmlFor="long-url">
         <div className="form__label-wrapper">
           <span className="form__label-icon">
@@ -82,13 +88,12 @@ const UrlForm = () => {
       </label>
       <Button
         type="submit"
-        onClick={handleCreateTeenyLink}
         color="yellow"
         className="form__button"
       >
         teenify
       </Button>
-    </div>
+    </form>
   );
 };
 
