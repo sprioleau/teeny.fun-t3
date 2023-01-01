@@ -1,13 +1,15 @@
 import React from "react";
-import { isSet, isValidUrl, removeTrailingSlash } from "@utils";
 
 import { GrMagic } from "react-icons/gr";
 import { HiLink } from "react-icons/hi";
+import { toast } from "react-toastify";
+import { isSet, isValidUrl, removeTrailingSlash } from "@utils";
+import { Button } from "@components";
 import { trpc } from "../utils/trpc";
-import Button from "./Button";
 
 const UrlForm = () => {
   const utils = trpc.useContext();
+
   const [longUrl, setLongUrl] = React.useState("");
   const [teenyCode, setTeenyCode] = React.useState("");
 
@@ -17,10 +19,13 @@ const UrlForm = () => {
     },
   });
 
-  const handleUpdateLongUrl = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const handleUpdateLongUrl = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLongUrl(e.target.value);
-  const handleUpdateTeenyCode = (e: React.ChangeEvent<HTMLInputElement>) =>
+  };
+
+  const handleUpdateTeenyCode = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTeenyCode(e.target.value);
+  };
 
   const handleCreateTeenyLink = async () => {
     if (!isSet(longUrl)) return alert("Required fields not set");
@@ -28,11 +33,14 @@ const UrlForm = () => {
 
     const newUrl = await createNewUrlMutation({
       longUrl: String(removeTrailingSlash(longUrl)),
+      teenyCode: Boolean(teenyCode) ? String(teenyCode) : undefined,
     });
 
     console.log("newUrl:", newUrl);
 
-    if (Boolean(newUrl)) console.log("🎉 Success");
+    if (Boolean(newUrl)) {
+      toast(`🎉 teeny.fun/${newUrl?.teenyCode} created! \n\n🌐: ${newUrl?.longUrl}`);
+    }
 
     setLongUrl("");
     setTeenyCode("");
@@ -75,10 +83,11 @@ const UrlForm = () => {
       <Button
         type="submit"
         onClick={handleCreateTeenyLink}
-        label="teenify"
         color="yellow"
         className="form__button"
-      />
+      >
+        teenify
+      </Button>
     </div>
   );
 };
