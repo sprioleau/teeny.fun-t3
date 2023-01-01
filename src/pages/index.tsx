@@ -1,46 +1,33 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import { FiGithub } from "react-icons/fi";
-import { default as logo } from "../images/logo.svg";
+import { BsArrowUpRight } from "react-icons/bs";
+import { useSession } from "next-auth/react";
 import {
   AuthActionButton,
-  Button,
+  Footer,
+  Logo,
   UrlForm,
   // Shapes
 } from "@components";
 
-import { useSession } from "next-auth/react";
+import { formatAsDomainName, trpc } from "@utils";
 
-import { trpc } from "@utils";
-import Image from "next/image";
-
-const Home: NextPage = () => {
+const HomePage: NextPage = () => {
   const { data: users } = trpc.user.getAllUsers.useQuery();
   const { data: urls } = trpc.url.getAllUrls.useQuery();
   const { data: sessionData } = useSession();
   const { data: teenyUrls = [] } = trpc.url.getAllByUserId.useQuery(
     { id: sessionData?.user?.id },
-    {
-      enabled: sessionData?.user !== undefined,
-    },
+    { enabled: sessionData?.user !== undefined },
   );
 
   console.log("urls:", urls);
   console.log("users:", users);
 
   return (
-    <div className="app">
+    <>
       <Head>
         <title>Teeny.fun</title>
-        <meta
-          name="description"
-          content="Make teeny tiny URLs with emojis 😂!"
-        />
-        <link
-          rel="icon"
-          href="/teeny-fun-favicon.png"
-          type="image/png"
-        />
       </Head>
 
       <main className="main">
@@ -61,20 +48,16 @@ const Home: NextPage = () => {
                 justifyContent: "center",
               }}
             >
-              <Image
-                src={logo}
-                alt="Teeny.fun logo"
-              />
-              {/* <Logo size="20rem" /> */}
+              <Logo size="15rem" />
             </span>
           </h1>
           {Boolean(teenyUrls?.length) && (
             <div>
-              <h3>Top 5 Urls</h3>
+              <h3>Top 5 URLs</h3>
               <table>
                 <thead>
                   <tr>
-                    <th>teeny URL</th>
+                    <th>teeny.fun/</th>
                     <th>Long URL</th>
                     <th>Hits</th>
                   </tr>
@@ -82,13 +65,24 @@ const Home: NextPage = () => {
                 <tbody>
                   {[...teenyUrls]
                     .sort((a, b) => b.hits - a.hits)
-                    .map(({ id, shortUrl, longUrl, hits }) => (
+                    .map(({ id, teenyCode, shortUrl, longUrl, hits }) => (
                       <tr key={id}>
                         <td>
-                          <a href={shortUrl}>{shortUrl}</a>
+                          <a
+                            href={teenyCode}
+                            title={shortUrl}
+                          >
+                            {teenyCode}
+                            <BsArrowUpRight />
+                          </a>
                         </td>
                         <td>
-                          <a href={longUrl}>{longUrl}</a>
+                          <a
+                            href={longUrl}
+                            title={longUrl}
+                          >
+                            {formatAsDomainName(longUrl)}
+                          </a>
                         </td>
                         <td>{hits}</td>
                       </tr>
@@ -130,26 +124,9 @@ const Home: NextPage = () => {
         </div>
       </main>
 
-      <footer className="footer">
-        <p>
-          Created by{" "}
-          <a
-            href="https://sprioleau.dev"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            San&apos;Quan Prioleau
-          </a>
-        </p>
-        <Button
-          label="Star on GitHub"
-          icon={<FiGithub />}
-          as="a"
-          href="https://github.com/sprioleau/teeny.fun"
-        />
-      </footer>
-    </div>
+      <Footer />
+    </>
   );
 };
 
-export default Home;
+export default HomePage;
