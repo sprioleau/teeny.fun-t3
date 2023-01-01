@@ -32,7 +32,7 @@ model User {
 model Url {
   id         String   @id @default(cuid())
   longUrl    String
-  shortUrl   String
+  shortUrl   String   @unique
   teenyCode  String   @unique
   codePoints String   
   hits       Int      @default(0)
