@@ -36,19 +36,21 @@ export default router({
       return newUrl;
     }),
 
-  getHits: publicProcedure.input(z.object({ id: z.string() })).query(({ ctx, input }) => {
-    const teenyUrlData = ctx.prisma.url.findUnique({
-      where: {
-        id: input.id,
-      },
-    });
+  getHits: publicProcedure
+    .input(z.object({ id: z.string().nullish() }))
+    .query(async ({ ctx, input }) => {
+      if (!input.id) throw new Error("Url not found");
 
-    if (!teenyUrlData) {
-      throw new Error("Url not found");
-    }
+      const teenyUrlData = await ctx.prisma.url.findUnique({
+        where: {
+          id: input?.id ?? "",
+        },
+      });
 
-    return teenyUrlData;
-  }),
+      if (!teenyUrlData) throw new Error("Url not found");
+
+      return teenyUrlData;
+    }),
 
   getAllByUserId: protectedProcedure
     .input(z.object({ id: z.string().nullish() }))
@@ -66,24 +68,26 @@ export default router({
       });
     }),
 
-  incrementHits: publicProcedure.input(z.object({ id: z.string() })).mutation(({ ctx, input }) => {
-    const updatedUrl = ctx.prisma.url.update({
-      where: {
-        id: input.id,
-      },
-      data: {
-        hits: {
-          increment: 1,
+  incrementHits: publicProcedure
+    .input(z.object({ id: z.string().nullish() }))
+    .mutation(({ ctx, input }) => {
+      const updatedUrl = ctx.prisma.url.update({
+        where: {
+          id: input.id,
         },
-      },
-    });
+        data: {
+          hits: {
+            increment: 1,
+          },
+        },
+      });
 
-    if (!updatedUrl) {
-      throw new Error("Url not found");
-    }
+      if (!updatedUrl) {
+        throw new Error("Url not found");
+      }
 
-    return updatedUrl;
-  }),
+      return updatedUrl;
+    }),
 
   getByTeenyCode: publicProcedure
     .input(z.object({ teenyCode: z.string() }))
