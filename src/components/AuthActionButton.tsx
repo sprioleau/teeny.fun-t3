@@ -21,8 +21,6 @@ export default function AuthActionButton() {
         display: "flex",
         gap: "1em",
         alignSelf: "flex-end",
-        marginRight: "2em",
-        marginTop: "1em",
       }}
     >
       {Boolean(sessionData?.user?.image) && (
