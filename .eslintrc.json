@@ -6,6 +6,11 @@
   "plugins": ["@typescript-eslint"],
   "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
   "rules": {
-    "@typescript-eslint/consistent-type-imports": "warn"
+    "@typescript-eslint/consistent-type-imports": "warn",
+    "import/order": [
+      1,
+      { "groups": ["external", "builtin", "internal", "sibling", "parent", "index"] }
+    ],
+    "func-style": ["error", "declaration", { "allowArrowFunctions": true }]
   }
 }
