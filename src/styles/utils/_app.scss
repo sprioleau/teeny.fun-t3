@@ -21,7 +21,7 @@ body {
 
 #__next,
 .app {
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
 }
 
@@ -31,16 +31,16 @@ body {
   flex-direction: column;
 }
 
-.main {
+.main,
+.page {
   @include border;
   // @include inset-shadow;
   background-color: var(--pink);
-  flex: 1 0 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  position: relative;
+  overflow-y: auto;
+  padding: 1.5em;
 }
 
 label {
@@ -120,4 +120,10 @@ td {
       border-color: currentColor;
     }
   }
+}
+
+ul,
+ol,
+li {
+  list-style: none;
 }

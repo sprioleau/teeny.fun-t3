@@ -1,0 +1,19 @@
+.sign-in {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1em;
+  height: 100%;
+
+  &__providers {
+    width: 15em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+
+    button {
+      width: 100%;
+    }
+  }
+}
