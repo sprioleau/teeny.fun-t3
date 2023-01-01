@@ -7,12 +7,12 @@ type Props = {
 } & React.ComponentPropsWithoutRef<"button">;
 
 const Button = (props: Props) => {
-  const { icon, color = "pink", className, children } = props;
+  const { icon, color = "pink", className, children, ...rest } = props;
 
   return (
     <button
       className={["button", color, className].join(" ")}
-      {...props}
+      {...rest}
     >
       {icon && <span className="icon button__icon">{icon}</span>}
       <span className="button__label">{children}</span>
