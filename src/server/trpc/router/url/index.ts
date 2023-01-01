@@ -1,21 +1,29 @@
 import emojiUnicode from "emoji-unicode";
+import { z } from "zod";
 import { ROOT_URL, topEmojis } from "@constants";
 import { generateTeenyCode } from "@utils";
-import { z } from "zod";
 
 import { router, publicProcedure, protectedProcedure } from "../../trpc";
 
 export default router({
-  createUrlForUser: publicProcedure
-    .input(z.object({ longUrl: z.string() }))
-    .mutation(({ ctx, input }) => {
-      if (!ctx.session?.user) {
-        throw new Error("User not found");
+  createUrlForUser: protectedProcedure
+    .input(z.object({ longUrl: z.string(), teenyCode: z.string().nullish() }))
+    .mutation(async ({ ctx, input }) => {
+      const userDesiredTeenyCode = input.teenyCode;
+      const generatedTeenyCode = generateTeenyCode(topEmojis, 5);
+      const teenyCode = userDesiredTeenyCode ?? generatedTeenyCode;
+
+      const existingUrl = await ctx.prisma.url.findUnique({
+        where: {
+          teenyCode,
+        },
+      });
+
+      if (existingUrl) {
+        throw new Error("Teeny code already exists");
       }
 
-      const teenyCode = generateTeenyCode(topEmojis, 5);
-
-      const newUrl = ctx.prisma.url.create({
+      const newUrl = await ctx.prisma.url.create({
         data: {
           userId: ctx.session.user.id,
           longUrl: input.longUrl,
