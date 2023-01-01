@@ -3,6 +3,7 @@ import type { NextPage } from "next";
 import React from "react";
 import { useRouter } from "next/router";
 import { trpc } from "@utils";
+import { Footer } from "@components";
 
 const REDIRECT_DURATION = 2500;
 
@@ -10,17 +11,17 @@ const RedirectPage: NextPage = () => {
   const router = useRouter();
 
   const { query } = router;
-  const { to: redirectUrl, id } = query as { to: string; id: string };
+  const { to: redirectUrl, id } = query as { to: string; id: string | undefined };
   const { data: teenyUrlData } = trpc.url.getHits.useQuery({ id });
   const { mutate: incrementHitsMutation } = trpc.url.incrementHits.useMutation();
 
   React.useEffect(() => {
     if (!query) router.push("/");
-    if (!window) return;
+    if (!window || !id) return;
 
     incrementHitsMutation({ id });
 
-    const redirectTimeout = setTimeout(async () => {
+    const redirectTimeout = setTimeout(() => {
       window.location.href = redirectUrl;
     }, REDIRECT_DURATION);
 
@@ -28,7 +29,7 @@ const RedirectPage: NextPage = () => {
   }, [router, query, id, redirectUrl, incrementHitsMutation]);
 
   return (
-    <div className="app">
+    <>
       <Head>
         <title>Teeny.fun</title>
         <meta
@@ -42,9 +43,13 @@ const RedirectPage: NextPage = () => {
         />
       </Head>
 
-      <h2>Redirecting to {redirectUrl}</h2>
-      {Boolean(teenyUrlData?.hits) && <p>Hits: {teenyUrlData?.hits}</p>}
-    </div>
+      <div className="redirect page">
+        <h2>Redirecting to {redirectUrl}</h2>
+        {Boolean(teenyUrlData?.hits) && <p>Hits: {teenyUrlData?.hits}</p>}
+      </div>
+
+      <Footer />
+    </>
   );
 };
 
