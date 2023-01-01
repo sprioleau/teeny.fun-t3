@@ -6,7 +6,7 @@ import hourGlass from "@images/hour-glass.svg";
 import sixPointStar from "@images/6-point-star.svg";
 import tongue from "@images/tongue.svg";
 
-const Shapes = () => {
+export default function Shapes() {
   return (
     <div className="shapes">
       <Image
@@ -47,6 +47,4 @@ const Shapes = () => {
       />
     </div>
   );
-};
-
-export default Shapes;
+}

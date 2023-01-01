@@ -8,7 +8,7 @@ import { isSet, isValidUrl, removeTrailingSlash } from "@utils";
 import { Button } from "@components";
 import { trpc } from "../utils/trpc";
 
-export default function UrlForm() {
+export default function UrlTable() {
   const utils = trpc.useContext();
   const router = useRouter();
 

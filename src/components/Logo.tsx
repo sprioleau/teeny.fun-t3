@@ -2,7 +2,7 @@ type LogoProps = {
   size?: string;
 };
 
-const Logo = ({ size = "30px" }: LogoProps) => {
+export default function Logo({ size = "30px" }: LogoProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -21,6 +21,4 @@ const Logo = ({ size = "30px" }: LogoProps) => {
       />
     </svg>
   );
-};
-
-export default Logo;
+}

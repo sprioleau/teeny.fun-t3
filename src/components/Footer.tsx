@@ -1,7 +1,7 @@
 import { FiGithub } from "react-icons/fi";
 import { Button } from "@components";
 
-const Footer = () => {
+export default function Footer() {
   return (
     <footer className="footer">
       <p>
@@ -23,6 +23,4 @@ const Footer = () => {
       </Button>
     </footer>
   );
-};
-
-export default Footer;
+}

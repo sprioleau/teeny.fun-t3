@@ -7,11 +7,6 @@ import Button from "./Button";
 export default function AuthActionButton() {
   const { data: sessionData } = useSession();
 
-  // const { data: secretMessage } = trpc.auth.getUrlsByUserId.useQuery(
-  //   undefined, // no input
-  //   { enabled: sessionData?.user !== undefined },
-  // );
-
   const handleAuthAction = () => {
     if (sessionData) signOut();
     else signIn();

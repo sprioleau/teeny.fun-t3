@@ -9,7 +9,7 @@ type Props = {
 } & React.ComponentPropsWithoutRef<"button"> &
   React.ComponentPropsWithoutRef<"a">;
 
-const Button = (props: Props) => {
+export default function Button(props: Props) {
   const { as: Tag = "button", href, icon, color = "pink", className, children, ...rest } = props;
 
   return (
@@ -22,6 +22,4 @@ const Button = (props: Props) => {
       <span className="button__label">{children}</span>
     </Tag>
   );
-};
-
-export default Button;
+}
