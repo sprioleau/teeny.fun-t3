@@ -2,6 +2,9 @@ import { type AppType } from "next/app";
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { trpc } from "../utils/trpc";
 
 import "@styles/styles.scss";
@@ -15,7 +18,15 @@ const App: AppType<{ session: Session | null }> = ({
       session={session}
       basePath="/auth"
     >
-      <Component {...pageProps} />
+      <ToastContainer
+        autoClose={3000}
+        position="bottom-right"
+        hideProgressBar={false}
+        closeOnClick
+      />
+      <div className="app">
+        <Component {...pageProps} />
+      </div>
     </SessionProvider>
   );
 };
