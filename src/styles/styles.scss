@@ -2,8 +2,6 @@
 @import "utils/mixins";
 @import "utils/app";
 
-@import "layout/home-page";
-
 // Components
 @import "components/icon";
 @import "components/button";
@@ -12,4 +10,5 @@
 @import "components/shapes";
 
 // Pages
+@import "pages/home";
 @import "pages/sign-in";
