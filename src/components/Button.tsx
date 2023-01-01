@@ -1,41 +1,22 @@
 import type { ReactNode } from "react";
 
 type Props = {
-  label: string;
-  as?: "button" | "a";
-  href?: string | undefined;
-  onClick?: () => void;
-  type?: "button" | "submit" | undefined;
   icon?: ReactNode;
-  disabled?: boolean;
-  color?: "yellow" | "pink" | "blue" | undefined;
+  color?: "yellow" | "pink" | "blue";
   className?: string;
 } & React.ComponentPropsWithoutRef<"button">;
 
-const Button = ({
-  label,
-  as: Tag = "button",
-  href,
-  onClick,
-  type,
-  icon,
-  disabled,
-  color = "pink",
-  className,
-}: Props) => {
+const Button = (props: Props) => {
+  const { icon, color = "pink", className, children } = props;
+
   return (
-    <Tag
+    <button
       className={["button", color, className].join(" ")}
-      href={href}
-      disabled={disabled}
-      onClick={onClick}
-      type={type}
-      target={href ?? "_blank"}
-      rel={href ?? "noreferrer noopener"}
+      {...props}
     >
       {icon && <span className="icon button__icon">{icon}</span>}
-      <span className="button__label">{label}</span>
-    </Tag>
+      <span className="button__label">{children}</span>
+    </button>
   );
 };
 
