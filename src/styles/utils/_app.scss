@@ -93,3 +93,31 @@ a {
   text-decoration: none;
   border-bottom: 1px solid currentColor;
 }
+
+table {
+  @include ff-mono;
+  font-size: 0.8em;
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+th,
+td {
+  padding: 0.35em 0.5em;
+  max-width: 200px;
+  word-break: break-all;
+  text-align: center;
+
+  a {
+    border-color: transparent;
+
+    &:hover {
+      border-color: currentColor;
+    }
+  }
+}
