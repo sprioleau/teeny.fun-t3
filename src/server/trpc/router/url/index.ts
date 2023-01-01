@@ -54,6 +54,7 @@ export default router({
 
   getAllByUserId: protectedProcedure
     .input(z.object({ id: z.string().nullish() }))
+
     .query(({ ctx, input }) => {
       const userId = input.id;
 
@@ -65,6 +66,10 @@ export default router({
         where: {
           userId,
         },
+        orderBy: {
+          hits: "desc",
+        },
+        take: 5,
       });
     }),
 
@@ -73,7 +78,7 @@ export default router({
     .mutation(({ ctx, input }) => {
       const updatedUrl = ctx.prisma.url.update({
         where: {
-          id: input.id,
+          id: input.id ?? "",
         },
         data: {
           hits: {

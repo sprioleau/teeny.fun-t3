@@ -64,7 +64,6 @@ const HomePage: NextPage = () => {
                 </thead>
                 <tbody>
                   {[...teenyUrls]
-                    .sort((a, b) => b.hits - a.hits)
                     .map(({ id, teenyCode, shortUrl, longUrl, hits }) => (
                       <tr key={id}>
                         <td>
