@@ -13,20 +13,17 @@ const RedirectPage: NextPage = () => {
   const { query } = router;
   const { to: redirectUrl, id } = query as { to: string; id: string | undefined };
   const { data: teenyUrlData } = trpc.url.getHits.useQuery({ id });
-  const { mutate: incrementHitsMutation } = trpc.url.incrementHits.useMutation();
 
   React.useEffect(() => {
     if (!query) router.push("/");
     if (!window || !id) return;
 
-    incrementHitsMutation({ id });
-
     const redirectTimeout = setTimeout(() => {
-      window.location.href = redirectUrl;
+      router.push(`/redirect-handler?redirectUrl=${redirectUrl}&id=${id}`);
     }, REDIRECT_DURATION);
 
     return () => clearTimeout(redirectTimeout);
-  }, [router, query, id, redirectUrl, incrementHitsMutation]);
+  }, [router, query, id, redirectUrl]);
 
   return (
     <>

@@ -32,7 +32,7 @@ const HomePage: NextPage = () => {
 
       <main className="main">
         <AuthActionButton />
-        <div className="home-page">
+        <div className="home">
           <h1>
             <span
               aria-hidden={true}
