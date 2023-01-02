@@ -3,7 +3,6 @@ import type { NextPage } from "next";
 import React from "react";
 import { useRouter } from "next/router";
 import { trpc } from "@utils";
-import { Footer } from "@components";
 
 const REDIRECT_DURATION = 2500;
 
@@ -44,8 +43,6 @@ const RedirectPage: NextPage = () => {
         <h2>Redirecting to {redirectUrl}</h2>
         {Boolean(teenyUrlData?.hits) && <p>Hits: {teenyUrlData?.hits}</p>}
       </div>
-
-      <Footer />
     </>
   );
 };
