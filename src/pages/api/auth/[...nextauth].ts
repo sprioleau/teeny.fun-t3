@@ -23,6 +23,7 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: env.GOOGLE_CLIENT_ID,
       clientSecret: env.GOOGLE_CLIENT_SECRET,
+      // https://github.com/nextauthjs/next-auth/issues/519
       allowDangerousEmailAccountLinking: true,
     }),
     GitHubProvider({
