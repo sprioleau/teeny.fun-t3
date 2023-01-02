@@ -1,6 +1,8 @@
 export { default as Button } from "./Button";
 export { default as Footer } from "./Footer";
+export { default as Layout } from "./Layout";
 export { default as Logo } from "./Logo";
+export { default as Navigation } from "./Navigation";
 export { default as Shapes } from "./Shapes";
 export { default as UrlForm } from "./UrlForm";
 export { default as UrlTable } from "./UrlTable";
