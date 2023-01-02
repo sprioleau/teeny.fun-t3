@@ -9,6 +9,11 @@ type SignInPageProps = {
 };
 
 const SignInPage: NextPage<SignInPageProps> = ({ providers }) => {
+  const getButtonColor = (index: number) => {
+    const colors = ["blue", "yellow", "pink"] as const;
+    return colors[index % 3];
+  };
+
   return (
     <>
       <Head>
@@ -18,13 +23,13 @@ const SignInPage: NextPage<SignInPageProps> = ({ providers }) => {
       <main className="sign-in page">
         <h1 className="sign-in__title">Sign in</h1>
         <ul className="sign-in__providers">
-          {Object.values(providers).map(({ name, id }) => (
+          {Object.values(providers).map(({ name, id }, index) => (
             <li key={name}>
               <Button
                 onClick={() => {
                   signIn(id, { callbackUrl: "/" });
                 }}
-                color="blue"
+                color={getButtonColor(index)}
               >
                 with {name}
               </Button>
