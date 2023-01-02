@@ -13,13 +13,7 @@ export default function AuthActionButton() {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        gap: "1em",
-        alignSelf: "flex-end",
-      }}
-    >
+    <div className="auth-action-button">
       <Button
         color="yellow"
         onClick={handleAuthAction}
