@@ -1,0 +1,31 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75em;
+  position: relative;
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+  }
+
+  &__tagline {
+    @include ff-mono;
+    font-size: 0.9rem;
+  }
+
+  &__emoji {
+    @include drop-shadow;
+    transform: rotate(-10deg);
+  }
+
+  &__logo {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 1;
+  }
+}

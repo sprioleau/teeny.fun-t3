@@ -8,9 +8,15 @@
 // Components
 @import "components/icon";
 @import "components/button";
-@import "components/footer";
+@import "components/button";
+@import "components/auth-action-button";
 @import "components/form";
 @import "components/shapes";
+@import "components/footer";
+@import "components/url-table";
+
+// Layout
+@import "layout/nav";
 
 // Pages
 @import "pages/home";
