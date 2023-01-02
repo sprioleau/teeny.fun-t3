@@ -6,6 +6,10 @@
   gap: 1em;
   height: 100%;
 
+  &__title {
+    color: var(--white);
+  }
+
   &__providers {
     width: 15em;
     display: flex;
