@@ -19,6 +19,7 @@
   &__emoji {
     @include drop-shadow;
     transform: rotate(-10deg);
+    cursor: pointer;
   }
 
   &__logo {
@@ -26,6 +27,7 @@
     top: 0;
     left: 50%;
     transform: translate(-50%);
+    cursor: pointer;
     z-index: 1;
   }
 }

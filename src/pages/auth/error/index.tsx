@@ -6,10 +6,10 @@ const AuthErrorPage: NextPage = () => {
   const { error } = query as { error: string };
 
   return (
-    <div>
-      <h2>There was an error</h2>
+    <main className="error page">
+      <h2>🤷🏾‍♂️ Oops! There was an error</h2>
       <pre>{error}</pre>
-    </div>
+    </main>
   );
 };
 
