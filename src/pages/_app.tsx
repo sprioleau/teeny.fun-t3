@@ -5,6 +5,7 @@ import { SessionProvider } from "next-auth/react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { Layout } from "@components";
 import { trpc } from "../utils/trpc";
 
 import "@styles/styles.scss";
@@ -24,9 +25,9 @@ const App: AppType<{ session: Session | null }> = ({
         hideProgressBar={false}
         closeOnClick
       />
-      <div className="app">
+      <Layout>
         <Component {...pageProps} />
-      </div>
+      </Layout>
     </SessionProvider>
   );
 };
