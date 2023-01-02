@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 import { type AppProviders } from "next-auth/providers";
 import { getProviders, signIn } from "next-auth/react";
 import Head from "next/head";
-import { Button, Footer, Logo } from "@components";
+import { Button } from "@components";
 
 type SignInPageProps = {
   providers: AppProviders;
@@ -16,8 +16,7 @@ const SignInPage: NextPage<SignInPageProps> = ({ providers }) => {
       </Head>
 
       <main className="sign-in page">
-        <Logo size="10rem" />
-        <h1>Sign in</h1>
+        <h1 className="sign-in__title">Sign in</h1>
         <ul className="sign-in__providers">
           {Object.values(providers).map(({ name, id }) => (
             <li key={name}>
@@ -25,7 +24,7 @@ const SignInPage: NextPage<SignInPageProps> = ({ providers }) => {
                 onClick={() => {
                   signIn(id, { callbackUrl: "/" });
                 }}
-                color="yellow"
+                color="blue"
               >
                 with {name}
               </Button>
@@ -33,8 +32,6 @@ const SignInPage: NextPage<SignInPageProps> = ({ providers }) => {
           ))}
         </ul>
       </main>
-
-      <Footer />
     </>
   );
 };
