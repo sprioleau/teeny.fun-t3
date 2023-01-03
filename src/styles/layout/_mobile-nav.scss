@@ -1,0 +1,101 @@
+.mobile-nav {
+  display: none;
+  z-index: 1;
+  position: relative;
+
+  @include bp(md) {
+    display: block;
+  }
+
+  &.expanded {
+    .mobile-nav__list {
+      display: block;
+    }
+
+    .mobile-nav__menu-button {
+      &::before {
+        --translateY: -50%;
+        --rotation: 45deg;
+      }
+
+      &::after {
+        --translateY: -50%;
+        --rotation: -45deg;
+      }
+    }
+
+    .mobile-nav__overlay {
+      display: block;
+    }
+  }
+
+  &__list {
+    @include border;
+    @include drop-shadow;
+    margin-right: calc(2 * var(--border-width));
+    display: none;
+    position: absolute;
+    top: calc(var(--header-height) - calc(3 * var(--border-width)));
+    right: 0;
+    background-color: var(--blue);
+    padding: 1em;
+    z-index: 6;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -0.5em;
+      right: 0;
+      width: 40px;
+      height: 10px;
+      background-color: var(--blue);
+      z-index: 5;
+    }
+  }
+
+  &__menu-button {
+    --button-size: var(--mobile-button-size);
+    --margin-bottom: 0.25em;
+    width: var(--button-size);
+    height: var(--button-size);
+    padding: 0;
+    position: relative;
+    z-index: 5;
+
+    &:active {
+      --offset: calc(1 * var(--border-width));
+    }
+
+    &::before,
+    &::after {
+      --translateY: calc(2 * var(--border-width));
+      --rotation: 0;
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 50%;
+      height: var(--border-width);
+      transform: translate(-50%, var(--translateY)) rotate(var(--rotation));
+      transform-origin: center;
+      background-color: var(--black);
+      transition: transform 0.3s ease;
+    }
+
+    &::before {
+      --translateY: calc(-2 * var(--border-width));
+    }
+  }
+
+  &__overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--black);
+    opacity: 0.5;
+    z-index: 2;
+  }
+}

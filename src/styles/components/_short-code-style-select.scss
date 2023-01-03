@@ -13,7 +13,7 @@
 
   &__radio-group {
     display: flex;
-    align-items: center;
+    flex-direction: column;
 
     &:focus-within {
       @include focus-ring;
@@ -24,14 +24,14 @@
     flex: 1;
 
     &:not(:first-child) label {
-      margin-left: calc(-1 * var(--border-width));
+      margin-top: calc(-1 * var(--border-width));
     }
   }
 
   label {
     @include border;
     display: flex;
-    height: 2.75em;
+    height: 3.5em;
     font-size: 0.9em;
     gap: 0.25em;
     align-items: center;

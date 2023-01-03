@@ -15,9 +15,12 @@
 @import "components/short-code-style-select";
 @import "components/footer";
 @import "components/url-table";
+@import "components/user-avatar";
 
 // Layout
-@import "layout/nav";
+@import "layout/header";
+@import "layout/desktop-nav";
+@import "layout/mobile-nav";
 
 // Pages
 @import "pages/home";

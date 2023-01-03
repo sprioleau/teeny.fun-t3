@@ -15,12 +15,31 @@
     0 0 0 calc(2 * var(--border-width)) var(--pink);
 }
 
-// @mixin inset-shadow {
-//   box-shadow: inset calc(2 * var(--shadow-offset)) calc(2 * var(--shadow-offset)) 0 #db2e62cc;
-// }
+@mixin inset-shadow($size: 1) {
+  box-shadow: inset calc($size * var(--shadow-offset)) calc($size * var(--shadow-offset)) 0
+    rgba(var(--black-rgb), 0.1);
+}
 
 @mixin drop-shadow {
   filter: drop-shadow(var(--shadow-offset) var(--shadow-offset) 0 var(--black));
+}
+
+@mixin hover-wrapper {
+  @media (hover: hover) {
+    @content;
+  }
+}
+
+$breakpoints: (
+  "sm": 576px,
+  "md": 768px,
+  "lg": 1024px,
+);
+
+@mixin bp($breakpoint) {
+  @media (max-width: map.get($breakpoints, $breakpoint)) {
+    @content;
+  }
 }
 
 $font-weights-sans: (

@@ -8,8 +8,15 @@
   --blue: #5aa6dc;
   --blue-rgb: 90, 166, 220;
   --black: #222;
+  --black-rgb: 34, 34, 34;
 
   // Sizes
   --border-width: 2.5px;
+  --header-height: 72px;
   --shadow-offset: calc(2 * var(--border-width));
+  --mobile-button-size: 40px;
+
+  @media (max-width: 768px) {
+    --header-height: 50px;
+  }
 }

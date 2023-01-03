@@ -1,6 +1,29 @@
 .footer {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 1rem 0 0;
+  display: flex;
+  gap: 0.5em;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0 0;
+
+  // &__byline {
+  //   white-space: nowrap;
+  // }
+
+  @include bp(sm) {
+    // flex-direction: column;
+    // gap: 1em;
+
+    .button {
+      height: var(--mobile-button-size);
+      width: var(--mobile-button-size);
+    }
+
+    .button__label {
+      display: none;
+    }
+
+    .button__icon {
+      margin: 0;
+    }
+  }
 }

@@ -1,11 +1,14 @@
-.nav {
+.header {
   display: flex;
   justify-content: space-between;
+  gap: 1em;
   align-items: center;
   margin-bottom: 0.75em;
   position: relative;
+  height: var(--header-height);
 
-  &__left {
+  &__left,
+  &__right {
     display: flex;
     align-items: center;
     gap: 1em;
@@ -28,6 +31,22 @@
     left: 50%;
     transform: translate(-50%);
     cursor: pointer;
-    z-index: 1;
+    z-index: 2;
+  }
+
+  &__logo-mobile {
+    display: none;
+  }
+
+  @include bp(md) {
+    &__tagline,
+    &__emoji,
+    &__logo {
+      display: none;
+    }
+
+    &__logo-mobile {
+      display: block;
+    }
   }
 }

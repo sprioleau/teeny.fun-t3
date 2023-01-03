@@ -4,8 +4,8 @@ import { Button } from "@components";
 export default function Footer() {
   return (
     <footer className="footer">
-      <p>
-        Created by{" "}
+      <p className="footer__byline">
+        by{" "}
         <a
           href="https://sprioleau.dev"
           target="_blank"

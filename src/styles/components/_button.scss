@@ -11,6 +11,7 @@ button {
   outline: none;
   font-size: 1.25rem;
   text-transform: lowercase;
+  white-space: nowrap;
   color: var(--pure-white);
   padding: 0.25rem 1.25rem;
   background-color: var(--pink);
@@ -29,10 +30,13 @@ button {
   }
 
   &:hover {
-    --offset: calc(-1 * var(--border-width));
-    --shadow-offset: calc(-3 * var(--offset));
-    --translate: var(--offset), var(--offset);
     cursor: pointer;
+
+    @include hover-wrapper {
+      --offset: calc(-1 * var(--border-width));
+      --shadow-offset: calc(-3 * var(--offset));
+      --translate: var(--offset), var(--offset);
+    }
   }
 
   &:active {
