@@ -13,7 +13,7 @@
     @include ff-mono;
     justify-content: flex-start;
     font-size: 0.9rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
   }
 
   &__label-icon {
@@ -29,6 +29,11 @@
     height: var(--field-height);
     font-size: 1rem;
     background-color: var(--off-white);
+    outline: none;
+
+    &:focus-visible {
+      @include focus-ring;
+    }
 
     &::placeholder {
       opacity: 0.5;

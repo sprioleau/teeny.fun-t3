@@ -1,16 +1,24 @@
 import emojiUnicode from "emoji-unicode";
 import { z } from "zod";
-import { ROOT_URL, topEmojis } from "@constants";
+import { ROOT_URL } from "@constants";
 import { generateTeenyCode } from "@utils";
 
+import { type ShortCodeStyleLabel, ShortCodeStyleLabels } from "components/UrlForm";
 import { router, publicProcedure, protectedProcedure } from "../../trpc";
 
 export default router({
   createUrlForUser: protectedProcedure
-    .input(z.object({ longUrl: z.string(), teenyCode: z.string().nullish() }))
+    .input(
+      z.object({
+        longUrl: z.string(),
+        teenyCode: z.string().nullish(),
+        // style: z.number(),
+        style: z.enum([ShortCodeStyleLabels.Emojis, ShortCodeStyleLabels.Standard]),
+      }),
+    )
     .mutation(async ({ ctx, input }) => {
       const userDesiredTeenyCode = input.teenyCode;
-      const generatedTeenyCode = generateTeenyCode(topEmojis, 5);
+      const generatedTeenyCode = generateTeenyCode(input.style as ShortCodeStyleLabel, 5);
       const teenyCode = userDesiredTeenyCode ?? generatedTeenyCode;
 
       const existingUrl = await ctx.prisma.url.findUnique({

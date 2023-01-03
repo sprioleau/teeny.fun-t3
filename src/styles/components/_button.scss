@@ -8,7 +8,7 @@ button {
   @include center;
   @include transition(0.2s);
   position: relative;
-
+  outline: none;
   font-size: 1.25rem;
   text-transform: lowercase;
   color: var(--pure-white);
@@ -39,6 +39,10 @@ button {
     --offset: calc(2 * var(--border-width));
     --translate: var(--offset), var(--offset);
     --shadow-offset: 0;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
   }
 
   &__icon {

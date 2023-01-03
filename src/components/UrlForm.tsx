@@ -5,15 +5,38 @@ import { HiLink } from "react-icons/hi";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { isSet, isValidUrl, removeTrailingSlash } from "@utils";
-import { Button } from "@components";
+import { Button, ShortCodeStyleSelect } from "@components";
 import { trpc } from "../utils/trpc";
 
-export default function UrlForm() {
-  const utils = trpc.useContext();
-  const router = useRouter();
+export type ShortCodeStyleLabel = "Emojis" | "Standard";
 
+export const ShortCodeStyleLabels = {
+  Emojis: "Emojis",
+  Standard: "Standard",
+};
+
+export type ShortCodeStyle = {
+  id: string;
+  label: ShortCodeStyleLabel;
+};
+
+const shortCodeStyles: ShortCodeStyle[] = [
+  {
+    id: "emojis",
+    label: "Emojis",
+  },
+  {
+    id: "standard",
+    label: "Standard",
+  },
+];
+
+export default function UrlForm() {
   const [longUrl, setLongUrl] = React.useState("");
   const [teenyCode, setTeenyCode] = React.useState("");
+  const [selectedStyle, setSelectedStyle] = React.useState<ShortCodeStyleLabel>("Emojis");
+  const utils = trpc.useContext();
+  const router = useRouter();
 
   const { mutateAsync: createNewUrlMutation } = trpc.url.createUrlForUser.useMutation({
     onSuccess: ({ id }) => {
@@ -21,6 +44,10 @@ export default function UrlForm() {
       router.push("/");
     },
   });
+
+  const handleShortCodeStyleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedStyle(e.target.value as ShortCodeStyleLabel);
+  };
 
   const handleUpdateLongUrl = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLongUrl(e.target.value);
@@ -30,13 +57,15 @@ export default function UrlForm() {
     setTeenyCode(e.target.value);
   };
 
-  const handleCreateTeenyLink = async () => {
+  const handleCreateTeenyLink = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (!isSet(longUrl)) return alert("Required fields not set");
     if (!isValidUrl(longUrl)) return alert("Not a valid URL");
 
     const newUrl = await createNewUrlMutation({
       longUrl: String(removeTrailingSlash(longUrl)),
       teenyCode: Boolean(teenyCode) ? String(teenyCode) : undefined,
+      style: selectedStyle,
     });
 
     console.log("newUrl:", newUrl);
@@ -86,6 +115,11 @@ export default function UrlForm() {
           onChange={handleUpdateTeenyCode}
         />
       </label>
+      <ShortCodeStyleSelect
+        styles={shortCodeStyles}
+        selectedStyle={selectedStyle}
+        onChange={handleShortCodeStyleChange}
+      />
       <Button
         type="submit"
         color="yellow"
