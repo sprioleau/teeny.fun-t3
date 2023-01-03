@@ -20,6 +20,11 @@
     rgba(var(--black-rgb), 0.1);
 }
 
+// @mixin inset-highlight($size: 1) {
+//   box-shadow: inset calc(-1 * $size * var(--shadow-offset)) calc(-1 * $size * var(--shadow-offset))
+//     0 rgba(var(--white-rgb), 0.5);
+// }
+
 @mixin drop-shadow {
   filter: drop-shadow(var(--shadow-offset) var(--shadow-offset) 0 var(--black));
 }
