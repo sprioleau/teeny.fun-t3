@@ -8,6 +8,11 @@ export const STRINGS = {
   TEENY_URLS: "teeny_urls",
 };
 
+const lowercase = "abcdefghijklmnopqrstuvwxyz";
+const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const numbers = "0123456789";
+export const standardCharacters = [...lowercase, ...uppercase, ...numbers, ...numbers]; // increase chance for numbers
+
 // Source: https://www.makeuseof.com/top-emojis-explained-cheat-sheet/
 // Removed emojis with multiple skin tones
 export const topEmojis: string[] = [
