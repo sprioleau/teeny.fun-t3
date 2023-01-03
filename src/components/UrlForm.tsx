@@ -80,40 +80,44 @@ export default function UrlForm() {
 
   return (
     <form
-      className="form bg-squircle"
+      className="url-form bg-squircle"
       onSubmit={handleCreateTeenyLink}
     >
       <label htmlFor="long-url">
-        <div className="form__label-wrapper">
-          <span className="form__label-icon">
+        <div className="url-form__label-wrapper">
+          <span className="url-form__label-icon">
             <HiLink />
           </span>
-          <span className="form__label">Long URL</span>
+          <span className="url-form__label">Long URL</span>
         </div>
-        <input
-          className="form__input"
-          type="text"
-          id="long-url"
-          placeholder="https://www.a-very-long-url.com"
-          value={longUrl}
-          onChange={handleUpdateLongUrl}
-          required
-        />
+        <div className="url-form__input-wrapper">
+          <input
+            className="url-form__input"
+            type="text"
+            id="long-url"
+            placeholder="https://www.a-very-long-url.com"
+            value={longUrl}
+            onChange={handleUpdateLongUrl}
+            required
+          />
+        </div>
       </label>
       <label htmlFor="teeny-code">
-        <div className="form__label-wrapper">
-          <span className="form__label-icon">
+        <div className="url-form__label-wrapper">
+          <span className="url-form__label-icon">
             <GrMagic />
           </span>
-          <span className="form__label">Customize?</span>
+          <span className="url-form__label">Customize?</span>
         </div>
-        <input
-          className="form__input"
-          type="text"
-          id="teeny-code"
-          value={teenyCode}
-          onChange={handleUpdateTeenyCode}
-        />
+        <div className="url-form__input-wrapper">
+          <input
+            className="url-form__input"
+            type="text"
+            id="teeny-code"
+            value={teenyCode}
+            onChange={handleUpdateTeenyCode}
+          />
+        </div>
       </label>
       <ShortCodeStyleSelect
         styles={shortCodeStyles}
@@ -123,7 +127,7 @@ export default function UrlForm() {
       <Button
         type="submit"
         color="yellow"
-        className="form__button"
+        className="url-form__button"
       >
         teenify
       </Button>

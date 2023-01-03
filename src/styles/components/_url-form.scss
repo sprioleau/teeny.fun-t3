@@ -1,10 +1,9 @@
-.form {
-  --padding: 3.5rem;
+.url-form {
+  --padding: clamp(2rem, 5vw, 3.5rem);
   --field-height: 3rem;
-  max-width: calc(250px + 2 * var(--padding));
   display: flex;
   flex-direction: column;
-  padding: var(--padding);
+  padding: calc(1.25 * var(--padding)) var(--padding);
   position: relative;
   z-index: 0;
 
@@ -21,6 +20,12 @@
     margin-right: 0.25rem;
   }
 
+  &__input-wrapper {
+    &:focus-within {
+      @include focus-ring;
+    }
+  }
+
   &__input {
     @include border;
     display: block;
@@ -30,10 +35,6 @@
     font-size: 1rem;
     background-color: var(--off-white);
     outline: none;
-
-    &:focus-visible {
-      @include focus-ring;
-    }
 
     &::placeholder {
       opacity: 0.5;
