@@ -7,12 +7,12 @@
     display: block;
   }
 
-  &.expanded {
-    .mobile-nav__list {
-      display: block;
+  &.expanded & {
+    &__menu-button-wrapper::before {
+      opacity: 1;
     }
 
-    .mobile-nav__menu-button {
+    &__menu-button {
       &::before {
         --translateY: -50%;
         --rotation: 45deg;
@@ -24,7 +24,11 @@
       }
     }
 
-    .mobile-nav__overlay {
+    &__list {
+      display: block;
+    }
+
+    &__overlay {
       display: block;
     }
   }
@@ -35,21 +39,26 @@
     margin-right: calc(2 * var(--border-width));
     display: none;
     position: absolute;
-    top: calc(var(--header-height) - calc(3 * var(--border-width)));
+    top: calc(var(--header-height) - calc(4 * var(--border-width)));
     right: 0;
     background-color: var(--blue);
     padding: 1em;
     z-index: 6;
+  }
+
+  &__menu-button-wrapper {
+    position: relative;
 
     &::before {
       content: "";
       position: absolute;
-      top: -0.5em;
-      right: 0;
-      width: 40px;
-      height: 10px;
+      bottom: -0.5em;
+      left: var(--border-width);
+      right: calc(3 * var(--border-width));
+      height: 15px;
       background-color: var(--blue);
-      z-index: 5;
+      opacity: 0;
+      z-index: 10;
     }
   }
 
