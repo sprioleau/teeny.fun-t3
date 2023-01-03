@@ -88,7 +88,7 @@ export default function UrlForm() {
           <span className="form__label-icon">
             <HiLink />
           </span>
-          <span className="form__label">Paste in a long URL</span>
+          <span className="form__label">Long URL</span>
         </div>
         <input
           className="form__input"
@@ -105,7 +105,7 @@ export default function UrlForm() {
           <span className="form__label-icon">
             <GrMagic />
           </span>
-          <span className="form__label">Customize your link?</span>
+          <span className="form__label">Customize?</span>
         </div>
         <input
           className="form__input"
