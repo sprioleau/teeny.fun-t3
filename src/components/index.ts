@@ -9,6 +9,7 @@ export { default as MobileNav } from "./MobileNav";
 export { default as Header } from "./Header";
 export { default as Shapes } from "./Shapes";
 export { default as ShortCodeStyleSelect } from "./ShortCodeStyleSelect";
+export { default as TeenifyAnimation } from "./TeenifyAnimation";
 export { default as UrlForm } from "./UrlForm";
 export { default as UrlTable } from "./UrlTable";
 export { default as UserAvatar } from "./UserAvatar";

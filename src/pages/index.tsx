@@ -1,7 +1,9 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 import {
+  TeenifyAnimation,
   UrlForm,
   UrlTable,
   // Shapes
@@ -28,6 +30,29 @@ const HomePage: NextPage = () => {
       </Head>
 
       <main className="home page">
+        <h1 className="home__main-heading">
+          <span className="home__teenify">
+            teenify
+            <TeenifyAnimation />
+          </span>
+          <br />
+          long URLs
+          <br />
+          with{" "}
+          <span className="home__emojis">
+            em
+            <div className="home__spinning-emoji-wrapper">
+              <Image
+                width={20}
+                height={20}
+                src="/images/smiley.svg"
+                alt="spinning emoji"
+                className="home__spinning-emoji"
+              />
+            </div>
+            jis
+          </span>
+        </h1>
         <UrlForm />
         {Boolean(teenyUrls?.length) && <UrlTable urls={teenyUrls} />}
         {/* <Shapes /> */}

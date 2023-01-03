@@ -1,5 +1,6 @@
 @import "utils/variables";
 @import "utils/mixins";
+@import "utils/base";
 @import "utils/app";
 
 // Helpers
@@ -8,19 +9,20 @@
 // Components
 @import "components/icon";
 @import "components/button";
-@import "components/button";
 @import "components/auth-action-button";
 @import "components/shapes";
-@import "components/short-code-style-select";
 @import "components/footer";
+@import "components/short-code-style-select";
+@import "components/teenify-animation";
 @import "components/url-form";
 @import "components/url-table";
 @import "components/user-avatar";
 
 // Layout
-@import "layout/header";
 @import "layout/desktop-nav";
+@import "layout/header";
 @import "layout/mobile-nav";
+@import "layout/page";
 
 // Pages
 @import "pages/home";

@@ -2,6 +2,9 @@
   --padding: clamp(2rem, 5vw, 3.5rem);
   --field-height: 3rem;
   display: flex;
+  gap: 1em;
+  max-width: 400px;
+  width: 100%;
   flex-direction: column;
   padding: calc(1.25 * var(--padding)) var(--padding);
   position: relative;
@@ -44,5 +47,6 @@
   &__button {
     margin-top: 0.5rem;
     height: var(--field-height);
+    position: relative;
   }
 }

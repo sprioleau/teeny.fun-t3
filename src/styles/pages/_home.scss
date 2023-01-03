@@ -3,4 +3,38 @@
   display: flex;
   align-items: center;
   gap: 2em;
+
+  &__main-heading {
+    font-size: clamp(2em, 1.25em + 5vw, 4.5em);
+    line-height: 1;
+  }
+
+  &__teenify {
+    position: relative;
+    background-blend-mode: screen;
+    padding: 0 1em;
+  }
+
+  &__emojis {
+    display: inline-flex;
+  }
+
+  &__spinning-emoji-wrapper {
+    @include drop-shadow;
+    margin: 0.0625em;
+    margin-right: 0.125em;
+  }
+
+  &__spinning-emoji {
+    width: 1em;
+    height: 1em;
+    transform: rotate(0);
+    animation: spin 2s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

@@ -6,6 +6,7 @@
   margin-bottom: 0.75em;
   position: relative;
   height: var(--header-height);
+  overflow-y: visible;
 
   &__left,
   &__right {
@@ -39,6 +40,8 @@
   }
 
   @include bp(md) {
+    overflow-x: auto;
+
     &__tagline,
     &__emoji,
     &__logo {

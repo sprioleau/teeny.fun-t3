@@ -5,7 +5,7 @@ import { HiLink } from "react-icons/hi";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { isSet, isValidUrl, removeTrailingSlash } from "@utils";
-import { Button, ShortCodeStyleSelect } from "@components";
+import { Button, ShortCodeStyleSelect, TeenifyAnimation } from "@components";
 import { trpc } from "../utils/trpc";
 
 export type ShortCodeStyleLabel = "Emojis" | "Standard";
@@ -129,6 +129,7 @@ export default function UrlForm() {
         color="yellow"
         className="url-form__button"
       >
+        <TeenifyAnimation animationDurationSeconds={5} />
         teenify
       </Button>
     </form>
