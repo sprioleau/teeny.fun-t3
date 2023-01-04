@@ -19,9 +19,6 @@
     width: calc(var(--animation-width) * 1px);
     height: 100%;
     opacity: 0.4;
-    transform: translateX(0px);
-    -webkit-animation: scroll calc(var(--animation-duration) * 1s) linear infinite;
-    animation: scroll calc(var(--animation-duration) * 1s) linear infinite;
 
     img {
       width: 50%;
@@ -48,17 +45,5 @@
       transform: rotate(180deg);
       right: 0;
     }
-  }
-}
-
-@-webkit-keyframes scroll {
-  to {
-    transform: translateX(calc(1px * var(--animation-width) / 2));
-  }
-}
-
-@keyframes scroll {
-  to {
-    transform: translateX(calc(1px * var(--animation-width) / 2));
   }
 }
