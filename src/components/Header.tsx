@@ -32,8 +32,8 @@ export default function Header() {
           className="header__logo-mobile"
           src={"/images/logo-mobile.svg"}
           alt="teeny.fun logo"
-          width={50 * (300 / 83)}
-          height={50}
+          width={48 * (300 / 83)}
+          height={48}
           onClick={handleRedirect}
         />
       </div>
