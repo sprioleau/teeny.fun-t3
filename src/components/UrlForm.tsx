@@ -129,7 +129,7 @@ export default function UrlForm() {
         color="yellow"
         className="url-form__button"
       >
-        <TeenifyAnimation animationDurationSeconds={5} />
+        <TeenifyAnimation animationDurationSeconds={2} />
         teenify
       </Button>
     </form>

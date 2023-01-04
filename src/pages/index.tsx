@@ -33,7 +33,7 @@ const HomePage: NextPage = () => {
         <h1 className="home__main-heading">
           <span className="home__teenify">
             teenify
-            <TeenifyAnimation />
+            <TeenifyAnimation animationDurationSeconds={2} />
           </span>
           <br />
           long URLs

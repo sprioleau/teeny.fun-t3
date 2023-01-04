@@ -20,7 +20,6 @@ export default function Header() {
           height={50}
           onClick={handleRedirect}
         />
-        <h2 className="header__tagline">Teeny URLs with emojis</h2>
         <Image
           className="header__logo"
           src={"/images/logo.svg"}

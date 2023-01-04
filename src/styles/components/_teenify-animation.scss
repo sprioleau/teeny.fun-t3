@@ -12,28 +12,53 @@
     display: flex;
   }
 
+  &__images {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(var(--animation-width) * 1px);
+    height: 100%;
+    opacity: 0.4;
+    transform: translateX(0px);
+    -webkit-animation: scroll calc(var(--animation-duration) * 1s) linear infinite;
+    animation: scroll calc(var(--animation-duration) * 1s) linear infinite;
+
+    img {
+      width: 50%;
+      height: 100%;
+      display: block;
+      position: absolute;
+      left: calc(-1px * var(--animation-width) / 2);
+
+      &:nth-child(2) {
+        left: 0;
+      }
+    }
+  }
+
   &__side {
     mix-blend-mode: overlay;
     width: 50%;
     height: 100%;
     position: absolute;
     flex: 1;
+    overflow: hidden;
 
     &.right {
       transform: rotate(180deg);
       right: 0;
     }
+  }
+}
 
-    background-image: url("/images/teenify-arrows.svg");
-    background-repeat: repeat no-repeat;
-    background-position: 0 50%;
-    background-size: contain;
-    animation: scroll calc(var(--animation-duration) * 1s) linear infinite;
+@-webkit-keyframes scroll {
+  to {
+    transform: translateX(calc(1px * var(--animation-width) / 2));
   }
 }
 
 @keyframes scroll {
   to {
-    background-position: calc(var(--animation-width) * 1px) 50%;
+    transform: translateX(calc(1px * var(--animation-width) / 2));
   }
 }
