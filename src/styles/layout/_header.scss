@@ -34,8 +34,7 @@
   }
 
   @include bp(md) {
-    overflow-x: auto;
-    overflow-y: hidden;
+    overflow: visible;
 
     &__tagline,
     &__emoji,

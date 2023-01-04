@@ -39,7 +39,7 @@
     margin-right: calc(2 * var(--border-width));
     display: none;
     position: absolute;
-    top: calc(var(--header-height) - calc(4 * var(--border-width)));
+    top: calc(var(--header-height) / 2);
     right: 0;
     background-color: var(--blue);
     padding: 1em;

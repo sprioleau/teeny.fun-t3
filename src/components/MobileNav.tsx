@@ -8,7 +8,6 @@ type Props = {
 };
 
 export default function MobileNav({ isExpanded, onToggleMenu }: Props) {
-  console.log("MobileNav isExpanded:", isExpanded);
   return (
     <nav className={["mobile-nav", isExpanded ? "expanded" : ""].join(" ")}>
       <div className="mobile-nav__menu-button-wrapper">
