@@ -3,7 +3,6 @@ import Head from "next/head";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import {
-  TeenifyAnimation,
   UrlForm,
   UrlTable,
   // Shapes
@@ -31,12 +30,7 @@ const HomePage: NextPage = () => {
 
       <main className="home page">
         <h1 className="home__main-heading">
-          <span className="home__teenify">
-            teenify
-            <TeenifyAnimation animationDurationSeconds={2} />
-          </span>
-          <br />
-          long URLs
+          <span className="home__teenify">teenify</span> URLs
           <br />
           with{" "}
           <span className="home__emojis">
