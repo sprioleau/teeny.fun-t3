@@ -5,13 +5,15 @@
   gap: 2em;
 
   &__main-heading {
+    @include drop-shadow;
     font-size: clamp(2em, 1.25em + 5vw, 4.5em);
     line-height: 1;
+    -webkit-text-stroke-width: var(--border-width);
+    -webkit-text-stroke-color: var(--black);
   }
 
   &__teenify {
     position: relative;
-    padding: 0 1em;
   }
 
   &__emojis {
