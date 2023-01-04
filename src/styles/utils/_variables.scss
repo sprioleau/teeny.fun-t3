@@ -12,8 +12,8 @@
   --black-rgb: 34, 34, 34;
 
   // Sizes
-  --border-width: 2.5px;
+  --border-width: clamp(1.75px, 0.3vw, 2.5px);
   --header-height: 72px;
-  --shadow-offset: calc(2 * var(--border-width));
+  --shadow-offset: calc(1.75 * var(--border-width));
   --mobile-button-size: 40px;
 }
