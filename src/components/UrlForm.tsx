@@ -5,7 +5,7 @@ import { HiLink } from "react-icons/hi";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { isSet, isValidUrl, removeTrailingSlash } from "@utils";
-import { Button, ShortCodeStyleSelect, TeenifyAnimation } from "@components";
+import { Button, CheckboxOption, ShortCodeStyleSelect, TeenifyAnimation } from "@components";
 import { trpc } from "../utils/trpc";
 
 export type ShortCodeStyleLabel = "Emojis" | "Standard";
@@ -35,6 +35,7 @@ export default function UrlForm() {
   const [longUrl, setLongUrl] = React.useState("");
   const [teenyCode, setTeenyCode] = React.useState("");
   const [selectedStyle, setSelectedStyle] = React.useState<ShortCodeStyleLabel>("Emojis");
+  const [showCustomizationOptions, setShowCustomizationOptions] = React.useState(false);
   const utils = trpc.useContext();
   const router = useRouter();
 
@@ -78,9 +79,15 @@ export default function UrlForm() {
     setTeenyCode("");
   };
 
+  const handleToggleCustomizationOptions = () => {
+    setShowCustomizationOptions(!showCustomizationOptions);
+  };
+
   return (
     <form
-      className="url-form bg-squircle"
+      className={["url-form", "bg-squircle", showCustomizationOptions ? "lg" : "md"]
+        .join(" ")
+        .trim()}
       onSubmit={handleCreateTeenyLink}
     >
       <header className="url-form__header">
@@ -98,37 +105,47 @@ export default function UrlForm() {
           <div className="url-form__input-wrapper">
             <input
               className="url-form__input"
-              type="text"
+              type="url"
               id="long-url"
-              placeholder="https://www.a-very-long-url.com"
+              placeholder="https://very-long-url.to"
               value={longUrl}
               onChange={handleUpdateLongUrl}
               required
             />
           </div>
         </label>
-        <label htmlFor="teeny-code">
-          <div className="url-form__label-wrapper">
-            <span className="url-form__label-icon">
-              <GrMagic />
-            </span>
-            <span className="url-form__label">Customize?</span>
-          </div>
-          <div className="url-form__input-wrapper">
-            <input
-              className="url-form__input"
-              type="text"
-              id="teeny-code"
-              value={teenyCode}
-              onChange={handleUpdateTeenyCode}
-            />
-          </div>
-        </label>
-        <ShortCodeStyleSelect
-          styles={shortCodeStyles}
-          selectedStyle={selectedStyle}
-          onChange={handleShortCodeStyleChange}
+        <CheckboxOption
+          id="customize"
+          label="Customize?"
+          checked={showCustomizationOptions}
+          onChange={handleToggleCustomizationOptions}
+          icon={<GrMagic />}
         />
+        {showCustomizationOptions && (
+          <fieldset className="url-form__fieldset">
+            <ShortCodeStyleSelect
+              styles={shortCodeStyles}
+              selectedStyle={selectedStyle}
+              onChange={handleShortCodeStyleChange}
+            />
+            {selectedStyle === "Emojis" && (
+              <label htmlFor="teeny-code">
+                <div className="url-form__label-wrapper">
+                  <span className="url-form__label">Enter your emojis</span>
+                </div>
+                <div className="url-form__input-wrapper">
+                  <input
+                    className="url-form__input"
+                    type="text"
+                    id="teeny-code"
+                    value={teenyCode}
+                    onChange={handleUpdateTeenyCode}
+                  />
+                </div>
+              </label>
+            )}
+          </fieldset>
+        )}
         <Button
           type="submit"
           color="yellow"

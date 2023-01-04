@@ -36,6 +36,15 @@
     // margin-top: 2em;
   }
 
+  &__fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 100%;
+    appearance: none;
+    border: none;
+  }
+
   &__label-wrapper {
     @include center;
     @include ff-mono;
@@ -53,25 +62,43 @@
     &:focus-within {
       @include focus-ring;
     }
-  }
 
-  &__input {
-    @include border;
-    display: block;
-    appearance: none;
-    padding: 0.5rem 0.75rem;
-    height: var(--field-height);
-    font-size: 1rem;
-    background-color: var(--off-white);
-    outline: none;
+    input[type="url"],
+    input[type="text"] {
+      @include border;
+      @include ff-mono(bold);
+      @include center;
+      display: block;
+      appearance: none;
+      outline: none;
+      padding: 0.5rem 0.75rem;
+      height: var(--field-height);
+      width: 100%;
+      font-size: 1rem;
+      background-color: var(--off-white);
 
-    &::placeholder {
-      opacity: 0.5;
+      &::placeholder {
+        opacity: 0.5;
+      }
     }
   }
 
+  // &__input {
+  //   @include border;
+  //   display: block;
+  //   appearance: none;
+  //   padding: 0.5rem 0.75rem;
+  //   height: var(--field-height);
+  //   font-size: 1rem;
+  //   background-color: var(--off-white);
+  //   outline: none;
+
+  //   &::placeholder {
+  //     opacity: 0.5;
+  //   }
+  // }
+
   &__button {
-    margin-top: 0.5rem;
     height: var(--field-height);
     position: relative;
   }

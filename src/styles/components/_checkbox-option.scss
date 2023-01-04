@@ -1,0 +1,54 @@
+.checkbox-option {
+  &:focus-within {
+    @include focus-ring;
+  }
+
+  &__label {
+    @include border;
+    @include inset-shadow;
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.5em 1em;
+    height: var(--field-height);
+    background-color: var(--blue);
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      --translateX: var(--field-height);
+      @include center;
+      content: "";
+      border: inherit;
+      position: absolute;
+      top: calc(-1 * var(--border-width));
+      right: calc(-1 * var(--border-width));
+      width: var(--field-height);
+      height: var(--field-height);
+      background-color: var(--white);
+      background-image: url("/images/checkmark.svg");
+      transform: translateX(var(--translateX));
+      transition: transform 0.1s;
+    }
+  }
+
+  &__label-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  &__label-icon {
+    @include center;
+  }
+
+  &__input:checked + .checkbox-option__label::after {
+    --translateX: 0;
+  }
+
+  &__input {
+    opacity: 0;
+    position: absolute;
+  }
+}

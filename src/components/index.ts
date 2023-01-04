@@ -1,5 +1,6 @@
 export { default as AuthActionButton } from "./AuthActionButton";
 export { default as Button } from "./Button";
+export { default as CheckboxOption } from "./CheckboxOption";
 export { default as DesktopNav } from "./DesktopNav";
 export { default as Footer } from "./Footer";
 export { default as Layout } from "./Layout";
