@@ -3,19 +3,15 @@
   gap: 0.5em;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0 0;
-
-  // &__byline {
-  //   white-space: nowrap;
-  // }
 
   @include bp(sm) {
-    // flex-direction: column;
-    // gap: 1em;
-
     .button {
       height: var(--mobile-button-size);
       width: var(--mobile-button-size);
+    }
+
+    .footer__byline {
+      font-size: 0.75em;
     }
 
     .button__label {

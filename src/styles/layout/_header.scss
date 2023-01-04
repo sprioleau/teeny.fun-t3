@@ -3,9 +3,9 @@
   justify-content: space-between;
   gap: 1em;
   align-items: center;
-  margin-bottom: 0.75em;
   position: relative;
   height: var(--header-height);
+  min-height: 50px;
 
   &__left,
   &__right {
@@ -35,6 +35,7 @@
 
   @include bp(md) {
     overflow-x: auto;
+    overflow-y: hidden;
 
     &__tagline,
     &__emoji,

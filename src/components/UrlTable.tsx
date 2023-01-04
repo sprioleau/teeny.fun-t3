@@ -5,7 +5,7 @@ import { formatAsDomainName } from "@utils";
 
 export default function UrlTable({ urls }: { urls: Url[] }) {
   return (
-    <div className="url-table bg-squircle">
+    <div className="url-table bg-squircle lg">
       <h3 className="url-table__title">Top 5 URLs</h3>
       <table>
         <thead>

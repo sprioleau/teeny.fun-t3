@@ -83,55 +83,61 @@ export default function UrlForm() {
       className="url-form bg-squircle"
       onSubmit={handleCreateTeenyLink}
     >
-      <label htmlFor="long-url">
-        <div className="url-form__label-wrapper">
-          <span className="url-form__label-icon">
-            <HiLink />
-          </span>
-          <span className="url-form__label">Long URL</span>
-        </div>
-        <div className="url-form__input-wrapper">
-          <input
-            className="url-form__input"
-            type="text"
-            id="long-url"
-            placeholder="https://www.a-very-long-url.com"
-            value={longUrl}
-            onChange={handleUpdateLongUrl}
-            required
-          />
-        </div>
-      </label>
-      <label htmlFor="teeny-code">
-        <div className="url-form__label-wrapper">
-          <span className="url-form__label-icon">
-            <GrMagic />
-          </span>
-          <span className="url-form__label">Customize?</span>
-        </div>
-        <div className="url-form__input-wrapper">
-          <input
-            className="url-form__input"
-            type="text"
-            id="teeny-code"
-            value={teenyCode}
-            onChange={handleUpdateTeenyCode}
-          />
-        </div>
-      </label>
-      <ShortCodeStyleSelect
-        styles={shortCodeStyles}
-        selectedStyle={selectedStyle}
-        onChange={handleShortCodeStyleChange}
-      />
-      <Button
-        type="submit"
-        color="yellow"
-        className="url-form__button"
-      >
-        <TeenifyAnimation animationDurationSeconds={2} />
-        teenify
-      </Button>
+      <header className="url-form__header">
+        <h2 className="url-form__title">Teenify</h2>
+        <p className="url-form__subtitle">Sign in to create your own</p>
+      </header>
+      <main className="url-form__main">
+        <label htmlFor="long-url">
+          <div className="url-form__label-wrapper">
+            <span className="url-form__label-icon">
+              <HiLink />
+            </span>
+            <span className="url-form__label">Long URL</span>
+          </div>
+          <div className="url-form__input-wrapper">
+            <input
+              className="url-form__input"
+              type="text"
+              id="long-url"
+              placeholder="https://www.a-very-long-url.com"
+              value={longUrl}
+              onChange={handleUpdateLongUrl}
+              required
+            />
+          </div>
+        </label>
+        <label htmlFor="teeny-code">
+          <div className="url-form__label-wrapper">
+            <span className="url-form__label-icon">
+              <GrMagic />
+            </span>
+            <span className="url-form__label">Customize?</span>
+          </div>
+          <div className="url-form__input-wrapper">
+            <input
+              className="url-form__input"
+              type="text"
+              id="teeny-code"
+              value={teenyCode}
+              onChange={handleUpdateTeenyCode}
+            />
+          </div>
+        </label>
+        <ShortCodeStyleSelect
+          styles={shortCodeStyles}
+          selectedStyle={selectedStyle}
+          onChange={handleShortCodeStyleChange}
+        />
+        <Button
+          type="submit"
+          color="yellow"
+          className="url-form__button"
+        >
+          <TeenifyAnimation animationDurationSeconds={2} />
+          teenify
+        </Button>
+      </main>
     </form>
   );
 }
