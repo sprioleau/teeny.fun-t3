@@ -1,6 +1,6 @@
 <!-- ![Social Card][social-card-url] -->
 
-> This repository has been archived and is read-only.
+> 📕 This repository has been archived and is read-only.
 
 # Make teeny tiny URLs with emojis 😂!
 
