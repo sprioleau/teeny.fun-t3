@@ -1,5 +1,7 @@
 <!-- ![Social Card][social-card-url] -->
 
+> This repository has been archived and is read-only.
+
 # Make teeny tiny URLs with emojis 😂!
 
 Use [teeny.fun][deployed-url] to generate emoji-powered short links. Login to customize your teeny link.
